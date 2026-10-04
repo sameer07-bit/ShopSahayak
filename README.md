@@ -67,11 +67,98 @@ An interactive walkthrough banner at the top of the interface allows evaluators 
 
 ## 💻 Tech Stack & Architecture
 
-- **Core:** HTML5 + Modular Vanilla JavaScript (ES6+ Pub/Sub reactive store).
-- **Styling:** Custom Vanilla CSS Design System (**Bharat Mercantile Precision**) adhering to Linear/Stripe calm B2B SaaS principles.
-- **Audio & Voice:** Web Speech API (Recognition & SpeechSynthesis) + Web Audio API visualizer.
-- **Export Engine:** Client-side Data URI Blobs for instant CSV & Excel downloads + Printable CSS media query for PDF generation.
-- **Zero Build Friction:** Runs directly in any modern browser without heavy node_modules dependencies.
+- **Backend Architecture:** Node.js, Express, MongoDB Atlas Mongoose ORM, Sharp image optimization.
+- **Frontend Architecture:** Modular Vanilla JavaScript MVC, Pub/Sub reactive store state, WebRTC Camera & Face Detection.
+- **AI Models & Vision OCR:** Google Gemini 2.5 Flash & 3.8 Flash Vision APIs for South Asian curved handwriting scripts (Telugu, Hindi, English).
+- **Styling:** Custom Vanilla CSS Design System (**Bharat Mercantile Precision**) adhering to modern B2B SaaS principles.
+- **Audio & Voice:** Natasha AI Voice Assistant powered by Gemini NLP and Web Speech API.
+- **Cloud & Deployment:** Render Blueprint (`render.yaml`), Docker containerization (`Dockerfile`).
+
+---
+
+## 📁 Clean Project Architecture
+
+```
+ShopSahayak/
+├── 📁 config/                 # Database connection & MongoDB Atlas cluster pool
+│   └── db.js                  # Resilient Atlas connector with auto-seeding
+├── 📁 controllers/            # Express Business Logic Controllers
+│   ├── aiController.js        # Natasha AI retail reasoning & inventory copilot
+│   ├── authController.js      # Biometric face verification & auth tokens
+│   ├── customerController.js  # Customer khata balances & ledger persistence
+│   ├── notificationController.js
+│   ├── ocrController.js       # Multilingual handwriting processing
+│   ├── productController.js   # Stock inventory & catalogue CRUD
+│   ├── salesController.js     # POS billing & sale transactions
+│   ├── storeController.js     # Store profile, GSTIN & business settings
+│   ├── supplierController.js  # Supplier network & PO generation
+│   ├── voiceController.js     # Natasha Voice Session handling
+│   └── whatsappController.js # WATI WhatsApp billing dispatch
+├── 📁 models/                 # Mongoose Data Models & MongoDB Schemas
+│   ├── Customer.js            # Customer accounts & khata balances
+│   ├── Product.js             # SKUs, stock levels & pricing
+│   ├── Transaction.js         # POS sales transactions & payment modes
+│   ├── PurchaseOrder.js       # Supplier restock orders
+│   ├── Supplier.js            # Wholesale distributor accounts
+│   ├── User.js                # Store owner/staff credentials & face data
+│   ├── Notification.js        # Real-time retail alerts
+│   ├── Message.js             # AI chat conversation logs
+│   ├── OcrScan.js             # Vision OCR scan history & results
+│   ├── StoreProfile.js        # Store branding, GSTIN, UPI details
+│   └── VoiceSession.js        # Natasha Voice agent interaction state
+├── 📁 routes/                 # Express API Endpoint Routers
+│   ├── aiRoutes.js            # /api/ai
+│   ├── authRoutes.js          # /api/auth
+│   ├── customerRoutes.js      # /api/customers
+│   ├── notificationRoutes.js  # /api/notifications
+│   ├── ocrRoutes.js           # /api/ocr
+│   ├── productRoutes.js       # /api/products
+│   ├── salesRoutes.js         # /api/sales
+│   ├── storeRoutes.js         # /api/store
+│   ├── supplierRoutes.js      # /api/suppliers
+│   ├── voiceRoutes.js         # /api/voice
+│   └── whatsappRoutes.js      # /api/whatsapp
+├── 📁 services/               # External Integration Services
+│   ├── geminiOcrService.js    # Google Gemini Vision OCR (Telugu/Hindi/English)
+│   └── watiService.js         # WATI WhatsApp Business API integration
+├── 📁 middleware/             # Middlewares (Auth token check, error handler)
+├── 📁 utils/                  # Business utilities (SMS, Gemini client, seed data)
+├── 📁 js/                     # Frontend Client Architecture (MVC)
+│   ├── app.js                 # App bootstrapper & table renderers
+│   ├── state.js               # Reactive centralized store state
+│   ├── auth.js                # 2-step credentials & facial recognition
+│   ├── api-service.js         # Dynamic backend API client
+│   ├── ui-controllers.js      # Modals, drawers, sales & PDF generator
+│   ├── ai-engine.js           # Autonomous retail agent chat engine
+│   ├── voice-agent.js         # Voice copilot with live microphone audio
+│   ├── ocr-scanner.js         # Handwriting scanner & bounding-box UI
+│   ├── camera.js              # WebRTC camera capture & facial detection
+│   └── translations.js        # Tri-lingual dictionary (English, Telugu, Hindi)
+├── 📁 css/                    # Modular Design System Stylesheets
+├── 📁 public/                 # Static Assets & Public Samples
+│   ├── logo.png               # Official ShopSahayak logo
+│   └── samples/               # Telugu, Hindi & English handwriting samples
+├── 📁 scripts/                # Database Seeding & Maintenance Scripts
+│   ├── seed.js                # MongoDB Atlas initial database seeder
+│   └── migrate_user_email.js  # User partition database migration
+├── 📁 tests/                  # Verification & Integration Test Suite
+│   ├── test-ocr.js            # English handwriting OCR test
+│   ├── test-telugu-ocr.js     # Telugu handwriting OCR test
+│   ├── test-voice.js          # Natasha Voice agent synthesis test
+│   ├── test-db.js             # MongoDB Atlas connection test
+│   └── test-atlas-auth.js     # User authentication test
+├── 📁 docs/                   # Architectural & Deployment Documentation
+│   ├── ARCHITECTURE.md        # Comprehensive system architectural blueprint
+│   ├── INTEGRATION.md         # API integration specifications
+│   └── screenshots/           # UI walkthrough visual captures
+├── index.html                 # Main Single Page Application shell
+├── server.js                  # Production Node.js / Express server entrypoint
+├── logo.png                   # Official ShopSahayak logo
+├── render.yaml                # Render Blueprint deployment configuration
+├── Dockerfile                 # Production container specification
+├── package.json               # Node.js project manifest & dependencies
+└── RENDER_DEPLOYMENT.md       # Step-by-step cloud deployment instructions
+```
 
 ---
 
@@ -79,22 +166,39 @@ An interactive walkthrough banner at the top of the interface allows evaluators 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Chaithanyarajpeddireddy-lgtm/ShopSahayak-AI-Retail-Assistant.git
-   cd ShopSahayak-AI-Retail-Assistant
+   git clone https://github.com/sameer07-bit/ShopSahayak.git
+   cd ShopSahayak
    ```
 
-2. **Run locally:**
-   Simply open `index.html` in any modern web browser:
-   - On Windows: Double-click `index.html` or run `start index.html`
-   - Or serve with any static server:
-     ```bash
-     npx serve .
-     # or
-     python -m http.server 8080
-     ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-3. **Experience the Demo:**
-   Click the **"Interactive Demo"** button on the top bar or use the step controls to run through the entire hackathon demo flow!
+3. **Configure Environment Variables:**
+   Create a `.env` file based on `.env.example`:
+   ```bash
+   PORT=5000
+   MONGO_URI=your_mongodb_atlas_uri
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
+
+4. **Start the application:**
+   ```bash
+   npm start
+   ```
+   Open [http://localhost:5000](http://localhost:5000) in your browser.
+
+---
+
+## 🧪 Running Tests
+
+```bash
+npm run test           # Test MongoDB Atlas connection
+npm run test:ocr       # Test English Handwriting Vision OCR
+npm run test:telugu    # Test Telugu Handwriting Vision OCR
+npm run test:voice     # Test Natasha AI Voice Agent
+```
 
 ---
 

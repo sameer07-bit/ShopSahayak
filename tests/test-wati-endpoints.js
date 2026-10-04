@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
 
 const token = process.env.WATI_API_TOKEN;
 const testPhone = '917330789032';

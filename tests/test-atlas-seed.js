@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { productsData, customersData, transactionsData, suppliersData } = require('./utils/seedData');
+const { productsData, customersData, transactionsData, suppliersData } = require('../utils/seedData');
 
 const uri = 'mongodb+srv://admin:admin@cluster0.gyurphn.mongodb.net/ShopSahayak?retryWrites=true&w=majority&appName=Cluster0';
 
@@ -10,13 +10,13 @@ async function seedAtlasDatabase() {
     console.log(`\n✅ Connected to host: ${conn.connection.host}`);
     console.log(`📦 Database: ${conn.connection.name}`);
 
-    const Product = require('./models/Product');
-    const Customer = require('./models/Customer');
-    const Supplier = require('./models/Supplier');
-    const Transaction = require('./models/Transaction');
-    const User = require('./models/User');
-    const OcrScan = require('./models/OcrScan');
-    const VoiceSession = require('./models/VoiceSession');
+    const Product = require('../models/Product');
+    const Customer = require('../models/Customer');
+    const Supplier = require('../models/Supplier');
+    const Transaction = require('../models/Transaction');
+    const User = require('../models/User');
+    const OcrScan = require('../models/OcrScan');
+    const VoiceSession = require('../models/VoiceSession');
 
     // 1. Seed Users
     const uCount = await User.countDocuments();

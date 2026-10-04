@@ -1,11 +1,11 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
 const fs = require('fs');
 const path = require('path');
-const { recognizeHandwriting } = require('./services/geminiOcrService');
+const { recognizeHandwriting } = require('../services/geminiOcrService');
 
 async function testTelugu() {
   console.log('Testing Telugu Handwriting Recognition...');
-  const samplePath = path.join(__dirname, 'public', 'samples', 'sample_telugu.jpg');
+  const samplePath = path.join(__dirname, '..', 'public', 'samples', 'sample_telugu.jpg');
   if (!fs.existsSync(samplePath)) {
     console.error('Telugu sample not found at:', samplePath);
     return;

@@ -1,11 +1,11 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
 const fs = require('fs');
 const path = require('path');
-const { recognizeHandwriting } = require('./services/geminiOcrService');
+const { recognizeHandwriting } = require('../services/geminiOcrService');
 
 async function test() {
   console.log('Testing Gemini OCR on sample image...');
-  const samplePath = path.join(__dirname, 'public', 'samples', 'sample_english.jpg');
+  const samplePath = path.join(__dirname, '..', 'public', 'samples', 'sample_english.jpg');
   if (!fs.existsSync(samplePath)) {
     console.error('Sample file not found at:', samplePath);
     return;
