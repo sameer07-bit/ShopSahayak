@@ -1,0 +1,14 @@
+# Dependencies & Local OS
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+
+# Shell wrappers used for local environment
+powershell.bat
+powershell.cmd
+
+# Local backup copies
+repo_main/
+repo_voice/
