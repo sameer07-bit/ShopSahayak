@@ -7,16 +7,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies
-RUN npm ci --only=production
+RUN npm install --omit=dev --no-audit --no-fund
 
 # Copy application source code
 COPY . .
 
 # Expose server port
-EXPOSE 3000
+EXPOSE 5000
 
-# Environment defaults
-ENV PORT=3000
 ENV NODE_ENV=production
 
 # Start application server

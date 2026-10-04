@@ -1,0 +1,7 @@
+node_modules
+.git
+.gitignore
+.env
+repo_main
+repo_voice
+*.log
